@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import Icon from '@/components/ui/icon';
 
 interface CookieStats {
@@ -24,15 +25,32 @@ interface CookieStats {
 }
 
 const API_URL = 'https://functions.poehali.dev/de16b350-2205-43e1-a745-489552d1f903';
+const ADMIN_PASSWORD = '1488';
 
 const Admin = () => {
   const [stats, setStats] = useState<CookieStats | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [period, setPeriod] = useState(7);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(false);
 
   useEffect(() => {
-    fetchStats();
-  }, [period]);
+    if (isAuthenticated) {
+      fetchStats();
+    }
+  }, [period, isAuthenticated]);
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (password === ADMIN_PASSWORD) {
+      setIsAuthenticated(true);
+      setError(false);
+    } else {
+      setError(true);
+      setPassword('');
+    }
+  };
 
   const fetchStats = async () => {
     setIsLoading(true);
@@ -57,6 +75,46 @@ const Admin = () => {
       minute: '2-digit'
     }).format(date);
   };
+
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/10 flex items-center justify-center">
+        <Card className="w-full max-w-md bg-card/50 backdrop-blur-sm">
+          <CardHeader className="text-center">
+            <div className="mx-auto mb-4 w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
+              <Icon name="Lock" size={32} className="text-primary" />
+            </div>
+            <CardTitle className="text-2xl font-rajdhani">Вход в админ-панель</CardTitle>
+            <CardDescription>Введите пароль для доступа к статистике</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={handleLogin} className="space-y-4">
+              <div>
+                <Input
+                  type="password"
+                  placeholder="Пароль"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className={error ? 'border-red-500' : ''}
+                  autoFocus
+                />
+                {error && (
+                  <p className="text-sm text-red-500 mt-2 flex items-center gap-1">
+                    <Icon name="AlertCircle" size={14} />
+                    Неверный пароль
+                  </p>
+                )}
+              </div>
+              <Button type="submit" className="w-full gap-2">
+                <Icon name="LogIn" size={18} />
+                Войти
+              </Button>
+            </form>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
 
   if (isLoading) {
     return (
