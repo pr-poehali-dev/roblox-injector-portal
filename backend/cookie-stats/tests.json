@@ -1,0 +1,32 @@
+{
+  "tests": [
+    {
+      "name": "Get cookie stats",
+      "method": "GET",
+      "path": "/",
+      "expectedStatus": 200,
+      "expectedBody": {
+        "total": "number",
+        "accepted": "number",
+        "declined": "number"
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Get stats with period",
+      "method": "GET",
+      "path": "/?period=30",
+      "expectedStatus": 200,
+      "expectedBody": {
+        "period_days": 30
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Handle OPTIONS",
+      "method": "OPTIONS",
+      "path": "/",
+      "expectedStatus": 200
+    }
+  ]
+}
