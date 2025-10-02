@@ -7,6 +7,7 @@ import HeroSection from '@/components/HeroSection';
 import ScriptCard from '@/components/ScriptCard';
 import ReviewsSection from '@/components/ReviewsSection';
 import FAQSection from '@/components/FAQSection';
+import CookieConsent from '@/components/CookieConsent';
 import { scripts, categories } from '@/components/ScriptsData';
 
 const Index = () => {
@@ -97,6 +98,8 @@ const Index = () => {
           mainDownloadOpen={mainDownloadOpen}
           setMainDownloadOpen={setMainDownloadOpen}
         />
+
+        <CookieConsent />
       </div>
     </div>
   );
