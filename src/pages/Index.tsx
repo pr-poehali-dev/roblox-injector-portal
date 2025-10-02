@@ -9,57 +9,63 @@ import Icon from '@/components/ui/icon';
 const scripts = [
   {
     id: 1,
-    title: 'Infinite Jump',
-    description: 'Позволяет делать бесконечные прыжки в любой игре',
-    category: 'Movement',
-    downloads: '12.5K',
-    icon: 'Rocket',
-    code: 'loadstring(game:HttpGet("https://api.script.com/infinite-jump"))()'
+    title: '99 Nights in the Forest',
+    description: 'ESP для монстров, авто-сбор предметов, телепорт к сундукам',
+    category: 'Horror',
+    downloads: '24.3K',
+    icon: 'Moon',
+    game: '99 Nights in the Forest',
+    code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/scripts/99nights.lua"))()'
   },
   {
     id: 2,
-    title: 'Speed Boost',
-    description: 'Увеличивает скорость персонажа до максимума',
-    category: 'Movement',
-    downloads: '8.3K',
-    icon: 'Zap',
-    code: 'loadstring(game:HttpGet("https://api.script.com/speed-boost"))()'
+    title: 'Blue Lock: Rivals',
+    description: 'Автоматические пасы, усиление удара, авто-гол',
+    category: 'Sports',
+    downloads: '31.7K',
+    icon: 'Trophy',
+    game: 'Blue Lock: Rivals',
+    code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/scripts/bluelock.lua"))()'
   },
   {
     id: 3,
-    title: 'Wall Hack',
-    description: 'Проходите сквозь стены и препятствия',
-    category: 'Exploit',
-    downloads: '15.2K',
-    icon: 'Shield',
-    code: 'loadstring(game:HttpGet("https://api.script.com/wall-hack"))()'
+    title: 'Murder Mystery 2',
+    description: 'ESP для убийцы и шерифа, авто-сбор монет, показ оружия',
+    category: 'Mystery',
+    downloads: '45.2K',
+    icon: 'Knife',
+    game: 'Murder Mystery 2',
+    code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/scripts/mm2.lua"))()'
   },
   {
     id: 4,
-    title: 'Auto Farm',
-    description: 'Автоматическая фарма ресурсов и опыта',
-    category: 'Automation',
-    downloads: '20.1K',
-    icon: 'Cog',
-    code: 'loadstring(game:HttpGet("https://api.script.com/auto-farm"))()'
+    title: 'Murders vs Sheriffs Duels',
+    description: 'Авто-парирование, ESP игроков, улучшенный прицел',
+    category: 'PvP',
+    downloads: '28.9K',
+    icon: 'Swords',
+    game: 'Murders vs Sheriffs Duels',
+    code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/scripts/mvsd.lua"))()'
   },
   {
     id: 5,
-    title: 'Teleport',
-    description: 'Мгновенное перемещение в любую точку карты',
-    category: 'Movement',
-    downloads: '9.7K',
-    icon: 'MapPin',
-    code: 'loadstring(game:HttpGet("https://api.script.com/teleport"))()'
+    title: 'Jailbreak',
+    description: 'Авто-грабеж, телепорт, бесконечная выносливость',
+    category: 'Action',
+    downloads: '52.1K',
+    icon: 'Car',
+    game: 'Jailbreak',
+    code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/scripts/jailbreak.lua"))()'
   },
   {
     id: 6,
-    title: 'God Mode',
-    description: 'Полная неуязвимость персонажа',
-    category: 'Exploit',
-    downloads: '18.4K',
-    icon: 'Crown',
-    code: 'loadstring(game:HttpGet("https://api.script.com/god-mode"))()'
+    title: 'Adopt Me',
+    description: 'Авто-фарм питомцев, дюп предметов, телепорт',
+    category: 'Roleplay',
+    downloads: '38.4K',
+    icon: 'Heart',
+    game: 'Adopt Me',
+    code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/scripts/adoptme.lua"))()'
   }
 ];
 
@@ -68,7 +74,7 @@ const Index = () => {
   const [docsOpen, setDocsOpen] = useState(false);
   const [mainDownloadOpen, setMainDownloadOpen] = useState(false);
   const { toast } = useToast();
-  const categories = ['All', 'Movement', 'Exploit', 'Automation'];
+  const categories = ['All', 'Horror', 'Sports', 'Mystery', 'PvP', 'Action', 'Roleplay'];
 
   const filteredScripts = selectedCategory === 'All' 
     ? scripts 
@@ -262,6 +268,10 @@ const Index = () => {
                           <DialogDescription>{script.description}</DialogDescription>
                         </DialogHeader>
                         <div className="space-y-4 mt-4">
+                          <div className="flex items-center gap-2 p-3 bg-primary/10 rounded-lg border border-primary/30">
+                            <Icon name="Gamepad2" size={18} className="text-primary" />
+                            <span className="text-sm font-medium">Игра: {script.game}</span>
+                          </div>
                           <div className="bg-muted/50 p-4 rounded-lg border border-border">
                             <div className="flex items-center justify-between mb-2">
                               <span className="text-sm font-medium text-muted-foreground">Код скрипта</span>
