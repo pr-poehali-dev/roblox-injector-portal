@@ -5,6 +5,7 @@ import Icon from '@/components/ui/icon';
 import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
 import ScriptCard from '@/components/ScriptCard';
+import ReviewsSection from '@/components/ReviewsSection';
 import FAQSection from '@/components/FAQSection';
 import { scripts, categories } from '@/components/ScriptsData';
 
@@ -89,6 +90,8 @@ const Index = () => {
             </div>
           )}
         </section>
+
+        <ReviewsSection />
 
         <FAQSection 
           mainDownloadOpen={mainDownloadOpen}
