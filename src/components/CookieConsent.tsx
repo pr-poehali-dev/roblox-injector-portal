@@ -2,25 +2,88 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
 
+const API_URL = 'https://functions.poehali.dev/988b9709-6759-4397-a742-143d3b27f936';
+
+const getSessionId = () => {
+  let sessionId = localStorage.getItem('session_id');
+  if (!sessionId) {
+    sessionId = 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+    localStorage.setItem('session_id', sessionId);
+  }
+  return sessionId;
+};
+
 const CookieConsent = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    const consent = localStorage.getItem('cookie_consent');
-    if (!consent) {
-      setTimeout(() => setIsVisible(true), 1000);
-    }
+    const checkConsent = async () => {
+      const sessionId = getSessionId();
+      const localConsent = localStorage.getItem('cookie_consent');
+      
+      if (localConsent) {
+        return;
+      }
+
+      try {
+        const response = await fetch(`${API_URL}?session_id=${sessionId}`);
+        const data = await response.json();
+        
+        if (data.found) {
+          localStorage.setItem('cookie_consent', data.consent_type);
+        } else {
+          setTimeout(() => setIsVisible(true), 1000);
+        }
+      } catch (error) {
+        setTimeout(() => setIsVisible(true), 1000);
+      }
+    };
+
+    checkConsent();
   }, []);
 
-  const handleAccept = () => {
-    localStorage.setItem('cookie_consent', 'accepted');
-    setIsVisible(false);
+  const saveConsent = async (consentType: 'accepted' | 'declined') => {
+    setIsLoading(true);
+    const sessionId = getSessionId();
+    const userId = localStorage.getItem('google_user');
+    let parsedUserId = null;
+
+    if (userId) {
+      try {
+        const user = JSON.parse(userId);
+        parsedUserId = user.id;
+      } catch (e) {
+        console.error('Failed to parse user:', e);
+      }
+    }
+
+    try {
+      await fetch(API_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          session_id: sessionId,
+          consent_type: consentType,
+          user_id: parsedUserId
+        })
+      });
+
+      localStorage.setItem('cookie_consent', consentType);
+      setIsVisible(false);
+    } catch (error) {
+      console.error('Failed to save consent:', error);
+      localStorage.setItem('cookie_consent', consentType);
+      setIsVisible(false);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  const handleDecline = () => {
-    localStorage.setItem('cookie_consent', 'declined');
-    setIsVisible(false);
-  };
+  const handleAccept = () => saveConsent('accepted');
+  const handleDecline = () => saveConsent('declined');
 
   if (!isVisible) return null;
 
@@ -44,6 +107,7 @@ const CookieConsent = () => {
             <Button 
               variant="outline" 
               onClick={handleDecline}
+              disabled={isLoading}
               className="gap-2"
             >
               <Icon name="X" size={16} />
@@ -51,10 +115,11 @@ const CookieConsent = () => {
             </Button>
             <Button 
               onClick={handleAccept}
+              disabled={isLoading}
               className="gap-2"
             >
               <Icon name="Check" size={16} />
-              Принять
+              {isLoading ? 'Сохранение...' : 'Принять'}
             </Button>
           </div>
         </div>
