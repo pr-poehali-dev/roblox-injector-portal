@@ -49,6 +49,16 @@ const scripts = [
   },
   {
     id: 5,
+    title: 'Blox Fruits',
+    description: 'Авто-фарм фруктов, телепорт к боссам, бесконечная выносливость',
+    category: 'RPG',
+    downloads: '89.5K',
+    icon: 'Apple',
+    game: 'Blox Fruits',
+    code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/scripts/bloxfruits.lua"))()'
+  },
+  {
+    id: 6,
     title: 'Jailbreak',
     description: 'Авто-грабеж, телепорт, бесконечная выносливость',
     category: 'Action',
@@ -58,7 +68,17 @@ const scripts = [
     code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/scripts/jailbreak.lua"))()'
   },
   {
-    id: 6,
+    id: 7,
+    title: 'Arsenal',
+    description: 'Аимбот, ESP врагов, авто-стрельба, телепорт к оружию',
+    category: 'FPS',
+    downloads: '67.8K',
+    icon: 'Target',
+    game: 'Arsenal',
+    code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/scripts/arsenal.lua"))()'
+  },
+  {
+    id: 8,
     title: 'Adopt Me',
     description: 'Авто-фарм питомцев, дюп предметов, телепорт',
     category: 'Roleplay',
@@ -66,6 +86,46 @@ const scripts = [
     icon: 'Heart',
     game: 'Adopt Me',
     code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/scripts/adoptme.lua"))()'
+  },
+  {
+    id: 9,
+    title: 'Brookhaven',
+    description: 'Разблокировка всех домов, телепорт, авто-работа',
+    category: 'Roleplay',
+    downloads: '41.2K',
+    icon: 'Home',
+    game: 'Brookhaven',
+    code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/scripts/brookhaven.lua"))()'
+  },
+  {
+    id: 10,
+    title: 'Blade Ball',
+    description: 'Авто-парирование, ESP мяча, улучшенная реакция',
+    category: 'Action',
+    downloads: '73.6K',
+    icon: 'Circle',
+    game: 'Blade Ball',
+    code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/scripts/bladeball.lua"))()'
+  },
+  {
+    id: 11,
+    title: 'Doors',
+    description: 'ESP монстров, авто-открытие дверей, подсветка ключей',
+    category: 'Horror',
+    downloads: '55.3K',
+    icon: 'DoorOpen',
+    game: 'Doors',
+    code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/scripts/doors.lua"))()'
+  },
+  {
+    id: 12,
+    title: 'Pet Simulator X',
+    description: 'Авто-сбор монет, дюп питомцев, телепорт к сундукам',
+    category: 'Simulator',
+    downloads: '49.7K',
+    icon: 'PawPrint',
+    game: 'Pet Simulator X',
+    code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/scripts/petx.lua"))()'
   }
 ];
 
@@ -75,7 +135,7 @@ const Index = () => {
   const [docsOpen, setDocsOpen] = useState(false);
   const [mainDownloadOpen, setMainDownloadOpen] = useState(false);
   const { toast } = useToast();
-  const categories = ['All', 'Horror', 'Sports', 'Mystery', 'PvP', 'Action', 'Roleplay'];
+  const categories = ['All', 'Horror', 'Sports', 'Mystery', 'PvP', 'RPG', 'Action', 'FPS', 'Roleplay', 'Simulator'];
 
   const filteredScripts = scripts.filter(script => {
     const matchesCategory = selectedCategory === 'All' || script.category === selectedCategory;
@@ -192,6 +252,36 @@ const Index = () => {
                       <div className="text-left">
                         <div className="font-semibold">macOS</div>
                         <div className="text-xs text-muted-foreground">Версия 2.4.1 • 18.7 MB</div>
+                      </div>
+                    </Button>
+                    <div className="relative py-3">
+                      <div className="absolute inset-0 flex items-center">
+                        <div className="w-full border-t border-border"></div>
+                      </div>
+                      <div className="relative flex justify-center">
+                        <span className="bg-background px-3 text-sm text-muted-foreground">Мобильные</span>
+                      </div>
+                    </div>
+                    <Button 
+                      className="w-full justify-start gap-3 h-14" 
+                      variant="outline"
+                      onClick={handleDownload}
+                    >
+                      <Icon name="Smartphone" size={24} />
+                      <div className="text-left">
+                        <div className="font-semibold">Android</div>
+                        <div className="text-xs text-muted-foreground">Версия 2.4.1 • 12.8 MB</div>
+                      </div>
+                    </Button>
+                    <Button 
+                      className="w-full justify-start gap-3 h-14" 
+                      variant="outline"
+                      onClick={handleDownload}
+                    >
+                      <Icon name="Tablet" size={24} />
+                      <div className="text-left">
+                        <div className="font-semibold">iOS</div>
+                        <div className="text-xs text-muted-foreground">Версия 2.4.1 • 14.3 MB</div>
                       </div>
                     </Button>
                   </div>
