@@ -1,0 +1,20 @@
+{
+  "tests": [
+    {
+      "name": "Start OAuth flow without secrets",
+      "method": "GET",
+      "path": "/",
+      "expectedStatus": 500,
+      "expectedBody": {
+        "error": "string"
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Handle OPTIONS request",
+      "method": "OPTIONS",
+      "path": "/",
+      "expectedStatus": 200
+    }
+  ]
+}
