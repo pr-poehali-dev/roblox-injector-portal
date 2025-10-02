@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { useToast } from '@/hooks/use-toast';
 import Icon from '@/components/ui/icon';
 
 const scripts = [
@@ -11,7 +13,8 @@ const scripts = [
     description: 'Позволяет делать бесконечные прыжки в любой игре',
     category: 'Movement',
     downloads: '12.5K',
-    icon: 'Rocket'
+    icon: 'Rocket',
+    code: 'loadstring(game:HttpGet("https://api.script.com/infinite-jump"))()'
   },
   {
     id: 2,
@@ -19,7 +22,8 @@ const scripts = [
     description: 'Увеличивает скорость персонажа до максимума',
     category: 'Movement',
     downloads: '8.3K',
-    icon: 'Zap'
+    icon: 'Zap',
+    code: 'loadstring(game:HttpGet("https://api.script.com/speed-boost"))()'
   },
   {
     id: 3,
@@ -27,7 +31,8 @@ const scripts = [
     description: 'Проходите сквозь стены и препятствия',
     category: 'Exploit',
     downloads: '15.2K',
-    icon: 'Shield'
+    icon: 'Shield',
+    code: 'loadstring(game:HttpGet("https://api.script.com/wall-hack"))()'
   },
   {
     id: 4,
@@ -35,7 +40,8 @@ const scripts = [
     description: 'Автоматическая фарма ресурсов и опыта',
     category: 'Automation',
     downloads: '20.1K',
-    icon: 'Cog'
+    icon: 'Cog',
+    code: 'loadstring(game:HttpGet("https://api.script.com/auto-farm"))()'
   },
   {
     id: 5,
@@ -43,7 +49,8 @@ const scripts = [
     description: 'Мгновенное перемещение в любую точку карты',
     category: 'Movement',
     downloads: '9.7K',
-    icon: 'MapPin'
+    icon: 'MapPin',
+    code: 'loadstring(game:HttpGet("https://api.script.com/teleport"))()'
   },
   {
     id: 6,
@@ -51,17 +58,36 @@ const scripts = [
     description: 'Полная неуязвимость персонажа',
     category: 'Exploit',
     downloads: '18.4K',
-    icon: 'Crown'
+    icon: 'Crown',
+    code: 'loadstring(game:HttpGet("https://api.script.com/god-mode"))()'
   }
 ];
 
 const Index = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
+  const [docsOpen, setDocsOpen] = useState(false);
+  const [mainDownloadOpen, setMainDownloadOpen] = useState(false);
+  const { toast } = useToast();
   const categories = ['All', 'Movement', 'Exploit', 'Automation'];
 
   const filteredScripts = selectedCategory === 'All' 
     ? scripts 
     : scripts.filter(script => script.category === selectedCategory);
+
+  const handleCopyScript = (code: string, title: string) => {
+    navigator.clipboard.writeText(code);
+    toast({
+      title: "Скопировано!",
+      description: `Скрипт "${title}" скопирован в буфер обмена`,
+    });
+  };
+
+  const handleDownload = () => {
+    toast({
+      title: "Загрузка началась",
+      description: "Инжектор скачивается на ваше устройство",
+    });
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/10">
@@ -77,14 +103,89 @@ const Index = () => {
               <h1 className="text-3xl font-rajdhani font-bold text-foreground">ROBLOX INJECTORS</h1>
             </div>
             <div className="flex gap-3 animate-fade-in" style={{ animationDelay: '0.2s' }}>
-              <Button variant="outline" className="gap-2">
-                <Icon name="BookOpen" size={18} />
-                Документация
-              </Button>
-              <Button className="gap-2 bg-primary hover:bg-primary/90">
-                <Icon name="Download" size={18} />
-                Скачать
-              </Button>
+              <Dialog open={docsOpen} onOpenChange={setDocsOpen}>
+                <DialogTrigger asChild>
+                  <Button variant="outline" className="gap-2">
+                    <Icon name="BookOpen" size={18} />
+                    Документация
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="max-w-2xl">
+                  <DialogHeader>
+                    <DialogTitle className="text-2xl font-rajdhani">Документация</DialogTitle>
+                    <DialogDescription>Руководство по использованию инжектора</DialogDescription>
+                  </DialogHeader>
+                  <div className="space-y-4 mt-4">
+                    <div className="space-y-2">
+                      <h3 className="font-rajdhani text-xl font-semibold flex items-center gap-2">
+                        <Icon name="Download" size={20} className="text-primary" />
+                        Установка
+                      </h3>
+                      <p className="text-muted-foreground">1. Скачайте инжектор с нашего сайта</p>
+                      <p className="text-muted-foreground">2. Отключите антивирус (может блокировать)</p>
+                      <p className="text-muted-foreground">3. Запустите файл от имени администратора</p>
+                    </div>
+                    <div className="space-y-2">
+                      <h3 className="font-rajdhani text-xl font-semibold flex items-center gap-2">
+                        <Icon name="Play" size={20} className="text-primary" />
+                        Использование
+                      </h3>
+                      <p className="text-muted-foreground">1. Откройте Roblox и зайдите в игру</p>
+                      <p className="text-muted-foreground">2. Запустите инжектор</p>
+                      <p className="text-muted-foreground">3. Скопируйте нужный скрипт из каталога</p>
+                      <p className="text-muted-foreground">4. Вставьте в инжектор и нажмите Execute</p>
+                    </div>
+                    <div className="space-y-2">
+                      <h3 className="font-rajdhani text-xl font-semibold flex items-center gap-2">
+                        <Icon name="Shield" size={20} className="text-primary" />
+                        Безопасность
+                      </h3>
+                      <p className="text-muted-foreground">• Все скрипты проверены на вирусы</p>
+                      <p className="text-muted-foreground">• Используйте на свой страх и риск</p>
+                      <p className="text-muted-foreground">• Не передавайте файлы третьим лицам</p>
+                    </div>
+                  </div>
+                </DialogContent>
+              </Dialog>
+
+              <Dialog open={mainDownloadOpen} onOpenChange={setMainDownloadOpen}>
+                <DialogTrigger asChild>
+                  <Button className="gap-2 bg-primary hover:bg-primary/90">
+                    <Icon name="Download" size={18} />
+                    Скачать
+                  </Button>
+                </DialogTrigger>
+                <DialogContent>
+                  <DialogHeader>
+                    <DialogTitle className="text-2xl font-rajdhani">Скачать инжектор</DialogTitle>
+                    <DialogDescription>Выберите версию для вашей системы</DialogDescription>
+                  </DialogHeader>
+                  <div className="space-y-3 mt-4">
+                    <Button 
+                      className="w-full justify-start gap-3 h-14" 
+                      variant="outline"
+                      onClick={handleDownload}
+                    >
+                      <Icon name="Monitor" size={24} />
+                      <div className="text-left">
+                        <div className="font-semibold">Windows 10/11</div>
+                        <div className="text-xs text-muted-foreground">Версия 2.4.1 • 15.2 MB</div>
+                      </div>
+                    </Button>
+                    <Button 
+                      className="w-full justify-start gap-3 h-14" 
+                      variant="outline"
+                      onClick={handleDownload}
+                    >
+                      <Icon name="Laptop" size={24} />
+                      <div className="text-left">
+                        <div className="font-semibold">macOS</div>
+                        <div className="text-xs text-muted-foreground">Версия 2.4.1 • 18.7 MB</div>
+                      </div>
+                    </Button>
+                  </div>
+                </DialogContent>
+              </Dialog>
             </div>
           </nav>
         </header>
@@ -140,13 +241,49 @@ const Index = () => {
                       <Icon name="Download" size={16} />
                       <span className="text-sm font-medium">{script.downloads}</span>
                     </div>
-                    <Button 
-                      size="sm" 
-                      className="gap-2 bg-primary hover:bg-primary/90 group-hover:gap-3 transition-all"
-                    >
-                      Получить
-                      <Icon name="ArrowRight" size={16} />
-                    </Button>
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <Button 
+                          size="sm" 
+                          className="gap-2 bg-primary hover:bg-primary/90 group-hover:gap-3 transition-all"
+                        >
+                          Получить
+                          <Icon name="ArrowRight" size={16} />
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent>
+                        <DialogHeader>
+                          <DialogTitle className="text-2xl font-rajdhani flex items-center gap-3">
+                            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+                              <Icon name={script.icon as any} className="text-white" size={24} />
+                            </div>
+                            {script.title}
+                          </DialogTitle>
+                          <DialogDescription>{script.description}</DialogDescription>
+                        </DialogHeader>
+                        <div className="space-y-4 mt-4">
+                          <div className="bg-muted/50 p-4 rounded-lg border border-border">
+                            <div className="flex items-center justify-between mb-2">
+                              <span className="text-sm font-medium text-muted-foreground">Код скрипта</span>
+                              <Button 
+                                size="sm" 
+                                variant="ghost" 
+                                onClick={() => handleCopyScript(script.code, script.title)}
+                                className="gap-2"
+                              >
+                                <Icon name="Copy" size={16} />
+                                Копировать
+                              </Button>
+                            </div>
+                            <code className="text-sm text-foreground block break-all">{script.code}</code>
+                          </div>
+                          <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                            <Icon name="Download" size={16} />
+                            <span>{script.downloads} загрузок</span>
+                          </div>
+                        </div>
+                      </DialogContent>
+                    </Dialog>
                   </div>
                 </CardContent>
               </Card>
@@ -161,10 +298,14 @@ const Index = () => {
             <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
               Присоединяйтесь к тысячам пользователей, которые уже используют наши инструменты
             </p>
-            <Button size="lg" className="gap-3 bg-primary hover:bg-primary/90 text-lg px-8">
-              <Icon name="Rocket" size={20} />
-              Начать сейчас
-            </Button>
+            <Dialog open={mainDownloadOpen} onOpenChange={setMainDownloadOpen}>
+              <DialogTrigger asChild>
+                <Button size="lg" className="gap-3 bg-primary hover:bg-primary/90 text-lg px-8">
+                  <Icon name="Rocket" size={20} />
+                  Начать сейчас
+                </Button>
+              </DialogTrigger>
+            </Dialog>
           </div>
         </section>
       </div>
