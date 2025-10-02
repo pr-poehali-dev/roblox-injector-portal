@@ -189,6 +189,20 @@ const Index = () => {
                   <div className="space-y-4 mt-4">
                     <div className="space-y-2">
                       <h3 className="font-rajdhani text-xl font-semibold flex items-center gap-2">
+                        <Icon name="Key" size={20} className="text-primary" />
+                        Получение ключа
+                      </h3>
+                      <p className="text-muted-foreground">1. Скачайте и запустите инжектор</p>
+                      <p className="text-muted-foreground">2. Нажмите кнопку "Get Key" в инжекторе</p>
+                      <p className="text-muted-foreground">3. Откроется страница - пройдите все проверки</p>
+                      <p className="text-muted-foreground">4. Скопируйте полученный ключ</p>
+                      <p className="text-muted-foreground">5. Вставьте ключ в инжектор и нажмите "Verify"</p>
+                      <div className="bg-primary/10 p-3 rounded-lg border border-primary/30 mt-3">
+                        <p className="text-sm text-primary font-medium">💡 Ключ действует 24 часа</p>
+                      </div>
+                    </div>
+                    <div className="space-y-2">
+                      <h3 className="font-rajdhani text-xl font-semibold flex items-center gap-2">
                         <Icon name="Download" size={20} className="text-primary" />
                         Установка
                       </h3>
