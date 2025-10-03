@@ -13,16 +13,24 @@ import { scripts, categories } from '@/components/ScriptsData';
 const Index = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const [showMultipleScriptsOnly, setShowMultipleScriptsOnly] = useState(false);
   const [docsOpen, setDocsOpen] = useState(false);
   const [mainDownloadOpen, setMainDownloadOpen] = useState(false);
   const { toast } = useToast();
+
+  const gameScriptCounts = scripts.reduce((acc, script) => {
+    acc[script.game] = (acc[script.game] || 0) + 1;
+    return acc;
+  }, {} as Record<string, number>);
 
   const filteredScripts = scripts.filter(script => {
     const matchesCategory = selectedCategory === 'All' || script.category === selectedCategory;
     const matchesSearch = script.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                          script.game.toLowerCase().includes(searchQuery.toLowerCase()) ||
                          script.description.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesCategory && matchesSearch;
+    const hasMultipleScripts = gameScriptCounts[script.game] > 1;
+    const matchesMultipleFilter = !showMultipleScriptsOnly || hasMultipleScripts;
+    return matchesCategory && matchesSearch && matchesMultipleFilter;
   });
 
   const handleCopyScript = (code: string, title: string) => {
@@ -67,17 +75,30 @@ const Index = () => {
             />
           </div>
 
-          <div className="flex justify-center gap-3 mb-12 flex-wrap" data-animate="fade-up" data-delay="200">
-            {categories.map((category) => (
+          <div className="space-y-4 mb-12">
+            <div className="flex justify-center">
               <Button
-                key={category}
-                variant={selectedCategory === category ? 'default' : 'outline'}
-                onClick={() => setSelectedCategory(category)}
+                variant={showMultipleScriptsOnly ? 'default' : 'outline'}
+                onClick={() => setShowMultipleScriptsOnly(!showMultipleScriptsOnly)}
                 className="transition-all duration-300"
               >
-                {category}
+                <Icon name="Layers" className="mr-2" size={16} />
+                Несколько скриптов
               </Button>
-            ))}
+            </div>
+            
+            <div className="flex justify-center gap-3 flex-wrap" data-animate="fade-up" data-delay="200">
+              {categories.map((category) => (
+                <Button
+                  key={category}
+                  variant={selectedCategory === category ? 'default' : 'outline'}
+                  onClick={() => setSelectedCategory(category)}
+                  className="transition-all duration-300"
+                >
+                  {category}
+                </Button>
+              ))}
+            </div>
           </div>
 
           {filteredScripts.length === 0 ? (
@@ -98,6 +119,7 @@ const Index = () => {
                     script={script}
                     index={index}
                     handleCopyScript={handleCopyScript}
+                    scriptCount={gameScriptCounts[script.game]}
                   />
                 </div>
               ))}

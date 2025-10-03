@@ -19,9 +19,10 @@ interface ScriptCardProps {
   script: Script;
   index: number;
   handleCopyScript: (code: string, title: string) => void;
+  scriptCount?: number;
 }
 
-const ScriptCard = ({ script, index, handleCopyScript }: ScriptCardProps) => {
+const ScriptCard = ({ script, index, handleCopyScript, scriptCount }: ScriptCardProps) => {
   return (
     <Card 
       id={`script-${script.id}`}
@@ -33,9 +34,17 @@ const ScriptCard = ({ script, index, handleCopyScript }: ScriptCardProps) => {
           <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
             <Icon name={script.icon as any} className="text-white" size={28} />
           </div>
-          <Badge variant="secondary" className="bg-secondary/20 text-secondary border-secondary/30">
-            {script.category}
-          </Badge>
+          <div className="flex gap-2">
+            {scriptCount && scriptCount > 1 && (
+              <Badge variant="default" className="bg-primary/20 text-primary border-primary/30">
+                <Icon name="Layers" size={12} className="mr-1" />
+                {scriptCount}
+              </Badge>
+            )}
+            <Badge variant="secondary" className="bg-secondary/20 text-secondary border-secondary/30">
+              {script.category}
+            </Badge>
+          </div>
         </div>
         <CardTitle className="font-rajdhani text-2xl">{script.title}</CardTitle>
         <CardDescription className="text-base">{script.description}</CardDescription>
