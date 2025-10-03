@@ -4,6 +4,7 @@ import { fpsScripts } from './scripts/fps-scripts';
 import { simulatorScripts } from './scripts/simulator-scripts';
 import { fightingScripts } from './scripts/fighting-scripts';
 import { otherScripts } from './scripts/other-scripts';
+import { generatedAllScripts } from './scripts/generated-all-scripts';
 
 export const scripts = [
   ...horrorScripts,
@@ -11,7 +12,8 @@ export const scripts = [
   ...fpsScripts,
   ...simulatorScripts,
   ...fightingScripts,
-  ...otherScripts
+  ...otherScripts,
+  ...generatedAllScripts
 ];
 
 export const categories = [
