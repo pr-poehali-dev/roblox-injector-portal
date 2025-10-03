@@ -1,13 +1,43 @@
 export const rpgScripts = [
   {
     id: 5,
-    title: 'Blox Fruits',
+    title: 'Blox Fruits - Авто-фарм',
     description: 'Авто-фарм фруктов, телепорт к боссам, бесконечная выносливость',
     category: 'RPG',
     downloads: '89.5K',
     icon: 'Apple',
     game: 'Blox Fruits',
     code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/scripts/bloxfruits.lua"))()'
+  },
+  {
+    id: 501,
+    title: 'Blox Fruits - PvP',
+    description: 'ESP игроков, авто-уворот, авто-блок, инфинити дэш',
+    category: 'RPG',
+    downloads: '72.1K',
+    icon: 'Swords',
+    game: 'Blox Fruits',
+    code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/scripts/bloxfruits-pvp.lua"))()'
+  },
+  {
+    id: 502,
+    title: 'Blox Fruits - Читы',
+    description: 'Бесконечное здоровье, бесконечная энергия, полёт, скорость',
+    category: 'RPG',
+    downloads: '91.2K',
+    icon: 'Zap',
+    game: 'Blox Fruits',
+    code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/scripts/bloxfruits-godmode.lua"))()'
+  },
+  {
+    id: 503,
+    title: 'Blox Fruits - Квесты',
+    description: 'Авто-прохождение квестов, телепорт к NPC, авто-диалоги',
+    category: 'RPG',
+    downloads: '65.8K',
+    icon: 'BookOpen',
+    game: 'Blox Fruits',
+    code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/scripts/bloxfruits-quests.lua"))()'
   },
   {
     id: 20,
