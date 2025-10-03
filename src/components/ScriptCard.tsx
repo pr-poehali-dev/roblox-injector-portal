@@ -24,6 +24,7 @@ interface ScriptCardProps {
 const ScriptCard = ({ script, index, handleCopyScript }: ScriptCardProps) => {
   return (
     <Card 
+      id={`script-${script.id}`}
       className="group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-500 hover:-translate-y-2 bg-card/50 backdrop-blur-sm border-border/50 animate-fade-in"
       style={{ animationDelay: `${index * 0.1 + 0.6}s` }}
     >

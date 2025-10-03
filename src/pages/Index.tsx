@@ -58,6 +58,12 @@ const Index = () => {
             <HeroSection 
               searchQuery={searchQuery}
               setSearchQuery={setSearchQuery}
+              onScriptSelect={(scriptId) => {
+                const script = scripts.find(s => s.id === scriptId);
+                if (script) {
+                  setSelectedCategory(script.category);
+                }
+              }}
             />
           </div>
 
