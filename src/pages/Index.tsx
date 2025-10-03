@@ -54,12 +54,14 @@ const Index = () => {
         />
 
         <section className="container mx-auto px-4 py-20">
-          <HeroSection 
-            searchQuery={searchQuery}
-            setSearchQuery={setSearchQuery}
-          />
+          <div data-animate="fade-up">
+            <HeroSection 
+              searchQuery={searchQuery}
+              setSearchQuery={setSearchQuery}
+            />
+          </div>
 
-          <div className="flex justify-center gap-3 mb-12 animate-fade-in flex-wrap" style={{ animationDelay: '0.4s' }}>
+          <div className="flex justify-center gap-3 mb-12 flex-wrap" data-animate="fade-up" data-delay="200">
             {categories.map((category) => (
               <Button
                 key={category}
@@ -81,23 +83,32 @@ const Index = () => {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredScripts.map((script, index) => (
-                <ScriptCard 
+                <div 
                   key={script.id}
-                  script={script}
-                  index={index}
-                  handleCopyScript={handleCopyScript}
-                />
+                  data-animate="fade-up"
+                  data-delay={Math.min(index * 50, 400)}
+                >
+                  <ScriptCard 
+                    script={script}
+                    index={index}
+                    handleCopyScript={handleCopyScript}
+                  />
+                </div>
               ))}
             </div>
           )}
         </section>
 
-        <ReviewsSection />
+        <div data-animate="fade-up">
+          <ReviewsSection />
+        </div>
 
-        <FAQSection 
-          mainDownloadOpen={mainDownloadOpen}
-          setMainDownloadOpen={setMainDownloadOpen}
-        />
+        <div data-animate="fade-up">
+          <FAQSection 
+            mainDownloadOpen={mainDownloadOpen}
+            setMainDownloadOpen={setMainDownloadOpen}
+          />
+        </div>
 
         <CookieConsent />
       </div>
