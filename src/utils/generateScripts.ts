@@ -44,6 +44,7 @@ const gameTemplates = {
   },
   Tycoon: {
     prefixes: ['Restaurant', 'Hotel', 'Mall', 'Factory', 'Theme Park', 'Airport', 'Zoo', 'Museum', 'Casino', 'Hospital', 'School', 'City', 'Island', 'Empire', 'Business'],
+    nouns: ['Tycoon', 'Empire', 'Mogul', 'Business', 'Corporation'],
     suffix: 'Tycoon',
     features: ['авто-сбор денег', 'бесконечные деньги', 'мгновенное строительство', 'разблокировка всего', 'телепорт', 'авто-улучшение', 'дюп денег', 'максимальная прибыль'],
     icons: ['Building', 'DollarSign', 'TrendingUp', 'Briefcase', 'Factory']
@@ -71,13 +72,17 @@ function generateGameName(category: string): string {
   if (!template) return 'Unknown Game';
   
   const prefix = getRandomElement(template.prefixes);
-  const noun = getRandomElement(template.nouns);
   const suffix = (template as any).suffix || '';
   
   if (suffix) {
     return `${prefix} ${suffix}`;
   }
   
+  if (!template.nouns || template.nouns.length === 0) {
+    return prefix;
+  }
+  
+  const noun = getRandomElement(template.nouns);
   return Math.random() > 0.5 ? `${prefix} ${noun}` : `${noun} ${prefix}`;
 }
 
