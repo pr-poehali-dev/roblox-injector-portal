@@ -137,7 +137,7 @@ export function generateScripts(startId: number, count: number, category: string
 
 export function generateAllScripts() {
   const categories = Object.keys(gameTemplates);
-  const scriptsPerCategory = Math.floor(5000 / categories.length);
+  const scriptsPerCategory = Math.floor(500 / categories.length);
   let currentId = 2000;
   const allScripts = [];
   
