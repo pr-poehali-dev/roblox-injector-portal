@@ -45,6 +45,56 @@ const Index = () => {
     });
   }, [toast]);
 
+  const handleExecuteScript = useCallback((code: string, title: string) => {
+    try {
+      const iframe = document.createElement('iframe');
+      iframe.style.display = 'none';
+      document.body.appendChild(iframe);
+      
+      const iframeWindow = iframe.contentWindow;
+      if (iframeWindow) {
+        iframeWindow.eval(`
+          (function() {
+            const game = {
+              HttpGet: function(url) {
+                return fetch(url).then(r => r.text());
+              }
+            };
+            
+            function loadstring(scriptCode) {
+              return function() {
+                try {
+                  console.log('[Script Executor] Running: ${title}');
+                  console.log('[Script Executor] Code:', scriptCode);
+                  eval(scriptCode);
+                } catch (e) {
+                  console.error('[Script Executor] Error:', e);
+                }
+              };
+            }
+            
+            ${code}
+          })();
+        `);
+      }
+      
+      toast({
+        title: "Скрипт запущен!",
+        description: `"${title}" выполняется в браузере. Откройте консоль (F12) для просмотра результатов.`,
+      });
+      
+      setTimeout(() => {
+        document.body.removeChild(iframe);
+      }, 5000);
+    } catch (error) {
+      toast({
+        title: "Ошибка выполнения",
+        description: "Не удалось выполнить скрипт. Попробуйте скопировать код вручную.",
+        variant: "destructive",
+      });
+    }
+  }, [toast]);
+
   const handleDownload = () => {
     toast({
       title: "Загрузка началась",
@@ -119,6 +169,7 @@ const Index = () => {
                   script={script}
                   index={index}
                   handleCopyScript={handleCopyScript}
+                  handleExecuteScript={handleExecuteScript}
                   scriptCount={gameScriptCounts[script.game]}
                 />
               ))}
