@@ -18,7 +18,8 @@ export const fpsScripts = [
     downloads: '58.9K',
     icon: 'Crosshair',
     game: 'Phantom Forces',
-    code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/scripts/phantomforces.lua"))()'
+    code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/scripts/phantomforces.lua"))()',
+    image: '/img/afed97cc-41c6-4ec6-ad66-443e36a4fc3a.jpg'
   },
   {
     id: 25,

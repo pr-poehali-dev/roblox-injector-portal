@@ -51,7 +51,8 @@ export const rpgScripts = [
     downloads: '53.7K',
     icon: 'Zap',
     game: 'Shindo Life',
-    code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/scripts/shindolife.lua"))()'
+    code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/scripts/shindolife.lua"))()',
+    image: '/img/7e14acaf-4ec5-4ee9-a1ef-a4037b1febf5.jpg'
   },
   {
     id: 28,
@@ -71,7 +72,8 @@ export const rpgScripts = [
     downloads: '61.4K',
     icon: 'Sparkles',
     game: 'King Legacy',
-    code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/scripts/kinglegacy.lua"))()'
+    code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/scripts/kinglegacy.lua"))()',
+    image: '/img/567a2a48-e202-4c92-a8ef-5498774f37aa.jpg'
   },
   {
     id: 47,

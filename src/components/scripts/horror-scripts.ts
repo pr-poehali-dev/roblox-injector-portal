@@ -28,7 +28,8 @@ export const horrorScripts = [
     downloads: '33.4K',
     icon: 'KeyRound',
     game: 'Piggy',
-    code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/scripts/piggy.lua"))()'
+    code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/scripts/piggy.lua"))()',
+    image: '/img/26f7e14e-04f4-4228-b45b-c81e1da637d0.jpg'
   },
   {
     id: 23,
@@ -48,7 +49,8 @@ export const horrorScripts = [
     downloads: '52.3K',
     icon: 'Rainbow',
     game: 'Rainbow Friends',
-    code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/scripts/rainbowfriends.lua"))()'
+    code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/scripts/rainbowfriends.lua"))()',
+    image: '/img/502a5802-c010-4331-885d-5a7438d19981.jpg'
   },
   {
     id: 45,

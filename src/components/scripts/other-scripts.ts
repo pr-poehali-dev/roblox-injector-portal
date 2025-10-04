@@ -17,7 +17,8 @@ export const otherScripts = [
     downloads: '45.2K',
     icon: 'Knife',
     game: 'Murder Mystery 2',
-    code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/scripts/mm2.lua"))()'
+    code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/scripts/mm2.lua"))()',
+    image: '/img/deba4bcf-92b0-4406-a4ff-a7fb15d47af4.jpg'
   },
   {
     id: 4,
@@ -37,7 +38,8 @@ export const otherScripts = [
     downloads: '52.1K',
     icon: 'Car',
     game: 'Jailbreak',
-    code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/scripts/jailbreak.lua"))()'
+    code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/scripts/jailbreak.lua"))()',
+    image: '/img/fa996395-aff3-4c7a-a44c-3c7926f3cba2.jpg'
   },
   {
     id: 8,
@@ -57,7 +59,8 @@ export const otherScripts = [
     downloads: '41.2K',
     icon: 'Home',
     game: 'Brookhaven',
-    code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/scripts/brookhaven.lua"))()'
+    code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/scripts/brookhaven.lua"))()',
+    image: '/img/9adcc381-f78d-473d-b9d5-85b8ddc59c77.jpg'
   },
   {
     id: 10,
@@ -77,7 +80,8 @@ export const otherScripts = [
     downloads: '62.4K',
     icon: 'Building',
     game: 'Tower of Hell',
-    code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/scripts/towerofhell.lua"))()'
+    code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/scripts/towerofhell.lua"))()',
+    image: '/img/bf6f32b9-fbd9-43dc-b35a-b2695ba289ee.jpg'
   },
   {
     id: 15,

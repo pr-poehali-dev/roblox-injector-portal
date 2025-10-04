@@ -18,7 +18,8 @@ export const simulatorScripts = [
     downloads: '41.8K',
     icon: 'Bug',
     game: 'Bee Swarm Simulator',
-    code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/scripts/beeswarm.lua"))()'
+    code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/scripts/beeswarm.lua"))()',
+    image: '/img/7ccd1cfc-a724-4a87-aa61-d961fb98c046.jpg'
   },
   {
     id: 32,
