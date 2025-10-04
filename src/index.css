@@ -95,6 +95,15 @@
     font-family: "Inter", sans-serif;
   }
 
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  img {
+    content-visibility: auto;
+  }
+
   h1,
   h2,
   h3,

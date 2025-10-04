@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -23,19 +24,21 @@ interface ScriptCardProps {
   scriptCount?: number;
 }
 
-const ScriptCard = ({ script, index, handleCopyScript, scriptCount }: ScriptCardProps) => {
+const ScriptCard = memo(({ script, index, handleCopyScript, scriptCount }: ScriptCardProps) => {
   return (
     <Card 
       id={`script-${script.id}`}
-      className="group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-500 hover:-translate-y-2 bg-card/50 backdrop-blur-sm border-border/50 animate-fade-in overflow-hidden"
-      style={{ animationDelay: `${index * 0.1 + 0.6}s` }}
+      className="group hover:shadow-lg hover:shadow-primary/10 transition-all duration-300 hover:-translate-y-1 bg-card/50 backdrop-blur-sm border-border/50 animate-fade-in overflow-hidden"
+      style={{ animationDelay: `${index * 0.05 + 0.3}s` }}
     >
       {script.image && (
-        <div className="relative h-48 overflow-hidden">
+        <div className="relative h-48 overflow-hidden bg-muted">
           <img 
             src={script.image} 
             alt={script.title}
-            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+            loading="lazy"
+            decoding="async"
+            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300 will-change-transform"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent"></div>
           <div className="absolute top-3 right-3 flex gap-2">
@@ -54,7 +57,7 @@ const ScriptCard = ({ script, index, handleCopyScript, scriptCount }: ScriptCard
       <CardHeader className={script.image ? 'pt-4' : ''}>
         {!script.image && (
           <div className="flex items-start justify-between mb-3">
-            <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+            <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center group-hover:scale-105 transition-transform duration-200">
               <Icon name={script.icon as any} className="text-white" size={28} />
             </div>
             <div className="flex gap-2">
@@ -130,6 +133,8 @@ const ScriptCard = ({ script, index, handleCopyScript, scriptCount }: ScriptCard
       </CardContent>
     </Card>
   );
-};
+});
+
+ScriptCard.displayName = 'ScriptCard';
 
 export default ScriptCard;

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
 import Icon from '@/components/ui/icon';
@@ -18,28 +18,32 @@ const Index = () => {
   const [mainDownloadOpen, setMainDownloadOpen] = useState(false);
   const { toast } = useToast();
 
-  const gameScriptCounts = scripts.reduce((acc, script) => {
-    acc[script.game] = (acc[script.game] || 0) + 1;
-    return acc;
-  }, {} as Record<string, number>);
+  const gameScriptCounts = useMemo(() => {
+    return scripts.reduce((acc, script) => {
+      acc[script.game] = (acc[script.game] || 0) + 1;
+      return acc;
+    }, {} as Record<string, number>);
+  }, []);
 
-  const filteredScripts = scripts.filter(script => {
-    const matchesCategory = selectedCategory === 'All' || script.category === selectedCategory;
-    const matchesSearch = script.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         script.game.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         script.description.toLowerCase().includes(searchQuery.toLowerCase());
-    const hasMultipleScripts = gameScriptCounts[script.game] > 1;
-    const matchesMultipleFilter = !showMultipleScriptsOnly || hasMultipleScripts;
-    return matchesCategory && matchesSearch && matchesMultipleFilter;
-  });
+  const filteredScripts = useMemo(() => {
+    return scripts.filter(script => {
+      const matchesCategory = selectedCategory === 'All' || script.category === selectedCategory;
+      const matchesSearch = script.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                           script.game.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                           script.description.toLowerCase().includes(searchQuery.toLowerCase());
+      const hasMultipleScripts = gameScriptCounts[script.game] > 1;
+      const matchesMultipleFilter = !showMultipleScriptsOnly || hasMultipleScripts;
+      return matchesCategory && matchesSearch && matchesMultipleFilter;
+    });
+  }, [selectedCategory, searchQuery, showMultipleScriptsOnly, gameScriptCounts]);
 
-  const handleCopyScript = (code: string, title: string) => {
+  const handleCopyScript = useCallback((code: string, title: string) => {
     navigator.clipboard.writeText(code);
     toast({
       title: "Скопировано!",
       description: `Скрипт "${title}" скопирован в буфер обмена`,
     });
-  };
+  }, [toast]);
 
   const handleDownload = () => {
     toast({
@@ -110,18 +114,13 @@ const Index = () => {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredScripts.map((script, index) => (
-                <div 
+                <ScriptCard 
                   key={script.id}
-                  data-animate="fade-up"
-                  data-delay={Math.min(index * 50, 400)}
-                >
-                  <ScriptCard 
-                    script={script}
-                    index={index}
-                    handleCopyScript={handleCopyScript}
-                    scriptCount={gameScriptCounts[script.game]}
-                  />
-                </div>
+                  script={script}
+                  index={index}
+                  handleCopyScript={handleCopyScript}
+                  scriptCount={gameScriptCounts[script.game]}
+                />
               ))}
             </div>
           )}
