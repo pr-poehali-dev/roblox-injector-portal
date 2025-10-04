@@ -27,9 +27,9 @@ const Header = ({ docsOpen, setDocsOpen, mainDownloadOpen, setMainDownloadOpen, 
       <nav className="flex items-center justify-between">
         <div className="flex items-center gap-3 animate-fade-in">
           <div className="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center animate-glow">
-            <Icon name="Code" className="text-white" size={24} />
+            <Icon name="Gamepad2" className="text-white" size={24} />
           </div>
-          <h1 className="text-3xl font-rajdhani font-bold text-foreground">ROBLOX INJECTORS</h1>
+          <h1 className="text-3xl font-rajdhani font-bold text-foreground">BROWSER GAMES</h1>
         </div>
         <div className="flex gap-3 animate-fade-in" style={{ animationDelay: '0.2s' }}>
           <Dialog open={docsOpen} onOpenChange={setDocsOpen}>

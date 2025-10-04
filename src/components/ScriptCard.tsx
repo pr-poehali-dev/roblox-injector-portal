@@ -108,29 +108,13 @@ const ScriptCard = memo(({ script, index, handleCopyScript, handleExecuteScript,
                   <Icon name="Gamepad2" size={18} className="text-primary" />
                   <span className="text-sm font-medium">Игра: {script.game}</span>
                 </div>
-                <div className="flex gap-2">
-                  <Button 
-                    onClick={() => handleExecuteScript(script.code, script.title)}
-                    className="flex-1 gap-2 bg-gradient-to-r from-primary to-secondary hover:opacity-90"
-                  >
-                    <Icon name="Play" size={18} />
-                    Запустить в браузере
-                  </Button>
-                  <Button 
-                    variant="outline"
-                    onClick={() => handleCopyScript(script.code, script.title)}
-                    className="gap-2"
-                  >
-                    <Icon name="Copy" size={18} />
-                    Копировать
-                  </Button>
-                </div>
-                <div className="bg-muted/50 p-4 rounded-lg border border-border">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-sm font-medium text-muted-foreground">Код скрипта</span>
-                  </div>
-                  <code className="text-sm text-foreground block break-all">{script.code}</code>
-                </div>
+                <Button 
+                  onClick={() => handleExecuteScript(script.code, script.title)}
+                  className="w-full gap-2 bg-gradient-to-r from-primary to-secondary hover:opacity-90"
+                >
+                  <Icon name="Play" size={18} />
+                  Играть сейчас
+                </Button>
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <Icon name="Download" size={16} />
                   <span>{script.downloads} загрузок</span>

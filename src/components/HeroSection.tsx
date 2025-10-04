@@ -77,20 +77,20 @@ const HeroSection = ({ searchQuery, setSearchQuery, onScriptSelect }: HeroSectio
   return (
     <div className="text-center max-w-4xl mx-auto mb-16 animate-slide-up">
       <Badge className="mb-6 text-sm px-4 py-1 bg-primary/20 text-primary border-primary/30">
-        Мощные инструменты для Roblox
+        Бесплатные браузерные игры
       </Badge>
       <h2 className="text-6xl md:text-7xl font-rajdhani font-bold mb-6 bg-gradient-to-r from-foreground via-foreground to-primary bg-clip-text text-transparent">
-        Скрипты для любых задач
+        Играй прямо в браузере
       </h2>
       <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
-        Коллекция проверенных скриптов для Roblox. Безопасно, быстро и эффективно
+        Огромная коллекция браузерных игр. Без установки, без регистрации
       </p>
       <div className="max-w-xl mx-auto relative">
         <Icon name="Search" className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground z-10" size={20} />
         <input
           ref={inputRef}
           type="text"
-          placeholder="Поиск по названию игры или скрипта..."
+          placeholder="Поиск игр..."
           value={searchQuery}
           onChange={(e) => {
             setSearchQuery(e.target.value);
