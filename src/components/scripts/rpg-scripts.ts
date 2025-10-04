@@ -7,7 +7,8 @@ export const rpgScripts = [
     downloads: '89.5K',
     icon: 'Apple',
     game: 'Blox Fruits',
-    code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/scripts/bloxfruits.lua"))()'
+    code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/scripts/bloxfruits.lua"))()',
+    image: '/img/513ce5af-b3c7-42e8-a316-9b32d0531956.jpg'
   },
   {
     id: 501,
@@ -17,7 +18,8 @@ export const rpgScripts = [
     downloads: '72.1K',
     icon: 'Swords',
     game: 'Blox Fruits',
-    code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/scripts/bloxfruits-pvp.lua"))()'
+    code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/scripts/bloxfruits-pvp.lua"))()',
+    image: '/img/513ce5af-b3c7-42e8-a316-9b32d0531956.jpg'
   },
   {
     id: 502,
@@ -27,7 +29,8 @@ export const rpgScripts = [
     downloads: '91.2K',
     icon: 'Zap',
     game: 'Blox Fruits',
-    code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/scripts/bloxfruits-godmode.lua"))()'
+    code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/scripts/bloxfruits-godmode.lua"))()',
+    image: '/img/513ce5af-b3c7-42e8-a316-9b32d0531956.jpg'
   },
   {
     id: 503,
@@ -37,7 +40,8 @@ export const rpgScripts = [
     downloads: '65.8K',
     icon: 'BookOpen',
     game: 'Blox Fruits',
-    code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/scripts/bloxfruits-quests.lua"))()'
+    code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/scripts/bloxfruits-quests.lua"))()',
+    image: '/img/513ce5af-b3c7-42e8-a316-9b32d0531956.jpg'
   },
   {
     id: 20,

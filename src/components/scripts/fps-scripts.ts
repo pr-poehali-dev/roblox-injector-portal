@@ -7,7 +7,8 @@ export const fpsScripts = [
     downloads: '67.8K',
     icon: 'Target',
     game: 'Arsenal',
-    code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/scripts/arsenal.lua"))()'
+    code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/scripts/arsenal.lua"))()',
+    image: '/img/46c71f0a-4810-43b8-958a-95c441cea5b9.jpg'
   },
   {
     id: 14,

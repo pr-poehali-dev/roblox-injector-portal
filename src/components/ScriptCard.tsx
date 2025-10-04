@@ -13,6 +13,7 @@ interface Script {
   icon: string;
   game: string;
   code: string;
+  image?: string;
 }
 
 interface ScriptCardProps {
@@ -26,26 +27,49 @@ const ScriptCard = ({ script, index, handleCopyScript, scriptCount }: ScriptCard
   return (
     <Card 
       id={`script-${script.id}`}
-      className="group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-500 hover:-translate-y-2 bg-card/50 backdrop-blur-sm border-border/50 animate-fade-in"
+      className="group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-500 hover:-translate-y-2 bg-card/50 backdrop-blur-sm border-border/50 animate-fade-in overflow-hidden"
       style={{ animationDelay: `${index * 0.1 + 0.6}s` }}
     >
-      <CardHeader>
-        <div className="flex items-start justify-between mb-3">
-          <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-            <Icon name={script.icon as any} className="text-white" size={28} />
-          </div>
-          <div className="flex gap-2">
+      {script.image && (
+        <div className="relative h-48 overflow-hidden">
+          <img 
+            src={script.image} 
+            alt={script.title}
+            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent"></div>
+          <div className="absolute top-3 right-3 flex gap-2">
             {scriptCount && scriptCount > 1 && (
-              <Badge variant="default" className="bg-primary/20 text-primary border-primary/30">
+              <Badge variant="default" className="bg-primary/90 text-primary-foreground border-primary backdrop-blur-sm">
                 <Icon name="Layers" size={12} className="mr-1" />
                 {scriptCount}
               </Badge>
             )}
-            <Badge variant="secondary" className="bg-secondary/20 text-secondary border-secondary/30">
+            <Badge variant="secondary" className="bg-secondary/90 text-secondary-foreground border-secondary backdrop-blur-sm">
               {script.category}
             </Badge>
           </div>
         </div>
+      )}
+      <CardHeader className={script.image ? 'pt-4' : ''}>
+        {!script.image && (
+          <div className="flex items-start justify-between mb-3">
+            <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+              <Icon name={script.icon as any} className="text-white" size={28} />
+            </div>
+            <div className="flex gap-2">
+              {scriptCount && scriptCount > 1 && (
+                <Badge variant="default" className="bg-primary/20 text-primary border-primary/30">
+                  <Icon name="Layers" size={12} className="mr-1" />
+                  {scriptCount}
+                </Badge>
+              )}
+              <Badge variant="secondary" className="bg-secondary/20 text-secondary border-secondary/30">
+                {script.category}
+              </Badge>
+            </div>
+          </div>
+        )}
         <CardTitle className="font-rajdhani text-2xl">{script.title}</CardTitle>
         <CardDescription className="text-base">{script.description}</CardDescription>
       </CardHeader>

@@ -17,7 +17,8 @@ export const horrorScripts = [
     downloads: '55.3K',
     icon: 'DoorOpen',
     game: 'Doors',
-    code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/scripts/doors.lua"))()'
+    code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/scripts/doors.lua"))()',
+    image: '/img/1ecf15df-9a75-428e-8626-ef49b165355a.jpg'
   },
   {
     id: 21,

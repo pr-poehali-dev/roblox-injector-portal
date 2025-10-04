@@ -7,7 +7,8 @@ export const simulatorScripts = [
     downloads: '49.7K',
     icon: 'PawPrint',
     game: 'Pet Simulator X',
-    code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/scripts/petx.lua"))()'
+    code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/scripts/petx.lua"))()',
+    image: '/img/494651a8-ae11-438d-bda3-323331cfb9ce.jpg'
   },
   {
     id: 17,
